@@ -1,0 +1,22 @@
+# Submission draft for https://github.com/awesome-dsh-plugin/awesome-dsh-plugin
+#
+# This file is a draft, not part of this package. To submit:
+#   1. fork awesome-dsh-plugin
+#   2. add this file as `data/plugins/<owner>__dsh-fenggu-time.yml`
+#      (replace songliu1992-glitch with your GitHub login)
+#   3. open a PR touching only that one file
+#
+# Requirements that matter (from their contributing.md):
+#   - package.json declares `dsh.bundle`            → yes, ./cordis.patch.yml
+#   - repo exists for at least 1 day                → wait a day after creating it
+#   - repo carries the `dsh-plugin` topic           → add it on GitHub
+#   - only `description.en` is required; keep it literal, no marketing
+#   - monorepo/subpackage note: not applicable here (single package at repo root)
+
+url: https://github.com/songliu1992-glitch/dsh-fenggu-time
+name: songliu1992-glitch/dsh-fenggu-time
+category: ui
+description:
+  en: Titlebar badge that shows one of two labels during Beijing office hours, with a statutory-holiday table refreshed from Settings.
+  zh: 标题栏徽章，按北京时间办公时段在两种文字间切换；法定节假日表可在设置里检查更新。
+icon: https://raw.githubusercontent.com/songliu1992-glitch/dsh-fenggu-time/main/assets/icon-180.png

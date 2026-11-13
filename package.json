@@ -1,0 +1,53 @@
+{
+  "name": "dsh-fenggu-time",
+  "version": "0.1.0",
+  "description": "Session header badge for DeepSeek Harness: shows 梁文峰时间 during Beijing office hours and 梁文谷时间 otherwise.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "badge",
+    "china-holidays"
+  ],
+  "license": "MIT",
+  "author": "dsh-fenggu-time contributors",
+  "homepage": "https://github.com/songliu1992-glitch/dsh-fenggu-time#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/songliu1992-glitch/dsh-fenggu-time.git"
+  },
+  "bugs": {
+    "url": "https://github.com/songliu1992-glitch/dsh-fenggu-time/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "data",
+    "assets/icon-180.png",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/client.test.mjs && node test/host.test.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  }
+}

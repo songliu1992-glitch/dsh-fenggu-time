@@ -1,0 +1,6 @@
+# dsh-fenggu-time bundle patch: one host row (holiday data + the update-check
+# route). The badge and the Settings row ship in the client half, declared
+# through `dsh.client` in package.json.
+- insert:
+    - id: fenggu-time
+      name: dsh-fenggu-time
