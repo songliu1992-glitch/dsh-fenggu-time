@@ -5,6 +5,15 @@ name: publish
 # credential, and no long-lived npm token ever exists on disk. The account's 2FA
 # is not involved, so no one-time password is needed per release.
 #
+# Security notes
+# - Both actions are pinned to full commit SHAs, and the repository requires SHA
+#   pinning, so a moved tag cannot change what runs here.
+# - No pull_request trigger: outside code never runs in this workflow, so a PR
+#   cannot reach the OIDC token.
+# - The publish step is skipped when that exact version already exists, so the
+#   workflow can be re-run (or dispatched manually) to verify the pipeline
+#   without burning a version number or failing the run.
+#
 # One-time setup on npmjs.com (package → Settings → Trusted Publisher →
 # GitHub Actions): owner `songliu1992-glitch`, repository `dsh-fenggu-time`,
 # workflow filename `publish.yml`.
@@ -22,9 +31,9 @@ jobs:
       contents: read
       id-token: write # required for trusted publishing / provenance
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
@@ -34,5 +43,18 @@ jobs:
           node test/client.test.mjs
           node test/host.test.mjs
 
+      - name: Is this version already on the registry?
+        id: published
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if npm view "dsh-fenggu-time@$version" version >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::dsh-fenggu-time@$version is already published; skipping npm publish"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish
+        if: steps.published.outputs.exists == 'false'
         run: npm publish --access public --provenance
