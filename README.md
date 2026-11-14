@@ -9,8 +9,7 @@ DeepSeek API pricing period is in force right now:
 ```
 
 The two labels are a pun on the name 梁文峰: 峰 (peak) and 谷 (valley). Green means your
-API calls are billed at the **off-peak rate, which is half of the peak rate** — the same
-wording DeepSeek uses in its pricing documentation.
+API calls are billed at the off-peak rate, which is half of the peak rate.
 
 The badge is a passive indicator: fixed to the titlebar row, vertically centred on the
 window's caption buttons, click-through, and identical on every page (conversation,
