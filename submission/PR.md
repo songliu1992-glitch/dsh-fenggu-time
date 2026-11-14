@@ -1,10 +1,16 @@
 ## What
 
 Adds `songliu1992-glitch/dsh-fenggu-time` — a 22px badge in the DSH window titlebar that
-switches between two labels during Beijing office hours.
+shows which DeepSeek API pricing period is in force right now.
 
-- **梁文峰时间** (yellow) — Mon–Fri, not a statutory holiday, 09:00–12:00 or 14:00–18:00
-- **梁文谷时间** (light green) — every other moment: lunch, evenings, weekends, holidays
+- **梁文峰时间** (yellow) — peak hours: Mon–Fri, not a Chinese public holiday,
+  09:00–12:00 or 14:00–18:00 Beijing (= 01:00–04:00 / 06:00–10:00 UTC)
+- **梁文谷时间** (green) — off-peak hours: everything else, including weekends and Chinese
+  public holidays in full
+
+Green means calls are billed at the off-peak rate, which is **half of the peak rate**; the
+wording follows DeepSeek's [pricing documentation](https://api-docs.deepseek.com/quick_start/pricing).
+READMEs ship in English and Chinese.
 
 `package.json` declares `dsh.bundle` (`./cordis.patch.yml`) and `dsh.client`
 (`platform: web`), so it installs like any other bundle.
@@ -19,7 +25,8 @@ overlap is real. The differences:
 | Presentation | banner at the top of the page every N minutes, plus a sidebar line | a passive badge in the window titlebar; **nothing pops up, ever** |
 | Position | page top | titlebar, on the same row as the caption buttons |
 | Data maintenance | no documented update path | **Settings → 通用 → 节假日数据 → 检查节假日更新** fetches a newer table from the published package (jsDelivr) and stores it outside `node_modules` |
-| Holiday provenance | not listed | the State Council document numbers and gov.cn links are in `data/holidays.json` and the README |
+| Holiday provenance | not listed | the State Council document numbers and gov.cn links are in `data/holidays.json` and both READMEs |
+| Wording | — | period names and the "half price" statement follow the official pricing docs, in English and Chinese |
 
 It is a display, not a reminder: one alarm is scheduled at the next boundary (00:00, 09:00,
 12:00, 14:00, 18:00 Beijing) and nothing runs in between. Roughly five wake-ups per day.

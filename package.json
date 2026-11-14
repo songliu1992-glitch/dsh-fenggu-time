@@ -1,7 +1,7 @@
 {
   "name": "dsh-fenggu-time",
-  "version": "0.1.0",
-  "description": "Session header badge for DeepSeek Harness: shows 梁文峰时间 during Beijing office hours and 梁文谷时间 otherwise.",
+  "version": "0.1.1",
+  "description": "Titlebar badge for DeepSeek Harness showing the current DeepSeek API pricing period: peak hours in yellow, off-peak hours in green (off-peak rates are half of the peak rates).",
   "keywords": [
     "dsh",
     "dsh-plugin",
@@ -33,6 +33,7 @@
     "data",
     "assets/icon-180.png",
     "README.md",
+    "README.zh.md",
     "LICENSE"
   ],
   "scripts": {
