@@ -24,9 +24,10 @@ overlap is real. The differences:
 |---|---|---|
 | Presentation | banner at the top of the page every N minutes, plus a sidebar line | a passive badge in the window titlebar; **nothing pops up, ever** |
 | Position | page top | titlebar, on the same row as the caption buttons |
-| Data maintenance | no documented update path | **Settings → 通用 → 节假日数据 → 检查节假日更新** fetches a newer table from the published package (jsDelivr) and stores it outside `node_modules` |
+| Data maintenance | no documented update path | checks the published table **automatically once a year** (31 Dec 12:00 Beijing, first run 2027-12-31) and stores a newer one outside `node_modules` |
 | Holiday provenance | not listed | the State Council document numbers and gov.cn links are in `data/holidays.json` and both READMEs |
 | Wording | — | period names and the "half price" statement follow the official pricing docs, in English and Chinese |
+| Settings surface | — | none: the check is automatic, so there is no button and no settings row to maintain |
 
 It is a display, not a reminder: one alarm is scheduled at the next boundary (00:00, 09:00,
 12:00, 14:00, 18:00 Beijing) and nothing runs in between. Roughly five wake-ups per day.
@@ -39,7 +40,7 @@ Transcribed per day from the State Council notices:
 - 2027 — 国办发明电〔2026〕10号 — <https://www.gov.cn/zhengce/content/202611/content_7085101.htm>
 
 Every November publishes the next year's arrangement, which is why the plugin ships an
-in-app update check instead of pretending a hard-coded table stays correct.
+automatic yearly check instead of pretending a hard-coded table stays correct.
 
 Deliberate rule decisions, documented in the README:
 

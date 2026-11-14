@@ -64,22 +64,27 @@ dsh plugin add dsh-fenggu-time
 Or in the app: **Plugins → Add plugin**, paste `dsh-fenggu-time`, choose the official npm
 registry, install, then restart DSH.
 
-## Holiday data and the update check
+## Holiday data and the yearly check
 
 China publishes the next year's holiday arrangement every November, so a hard-coded table
-goes stale. The plugin:
-
-1. ships a table (`data/holidays.json`, currently 2026 + 2027), and
-2. exposes **Settings → General → 节假日数据 → 检查节假日更新**, which fetches the newest
-   table from the published package (jsDelivr) and, when its version is newer, stores it
-   outside `node_modules` so it survives reinstalls.
+goes stale. There is nothing to press: the plugin checks itself **once a year, on 31 December
+at 12:00 Beijing time**, and the first run is **2027-12-31** — the 2026 and 2027 arrangements
+already ship, and 2028 is the first one nobody knows yet.
 
 ```sh
 ~/.dsh/plugin-state/fenggu-time-holidays.json   # Windows: %USERPROFILE%\.dsh\plugin-state\...
 ```
 
-Deleting that file falls back to the bundled table. This update check is the only network
-call the plugin makes, and only when you press the button.
+How the check behaves:
+
+- It fetches the newest table from the published package (jsDelivr) and keeps it only when
+  its version is newer, writing it outside `node_modules` so it survives reinstalls.
+- After each run the next New Year's Eve is armed again, so the chain never needs attention.
+- A machine that was switched off on New Year's Eve runs the missed check shortly after the
+  next start (never earlier than the first run above).
+- Deleting the file above falls back to the bundled table.
+- One network call per year, and only at that moment. The rest of the time the plugin is
+  offline.
 
 The shipped dates come from the State Council notices, transcribed per day:
 
