@@ -50,10 +50,13 @@ Deliberate rule decisions, documented in the README:
 
 ## Checks
 
-- `npm test`: classification (22 cases), alarm scheduling (8 cases, including a weekend and
-  the National Day week), holiday-document validation (9 rejection cases), both HTTP routes,
-  sidecar override after restart, and mounting on a surface without a web server
-- `npm pack --dry-run`: 8 files, 12.9 kB
-- Published as `dsh-fenggu-time@0.1.0`; the update source returns 200 on jsDelivr
+- `npm test`: classification (22 cases), alarm scheduling for the label (8 cases, including a
+  weekend and the National Day week), the yearly update schedule (first run 2027-12-31, then
+  chained, catch-up anchor never earlier), holiday-document validation (9 rejection cases),
+  the HTTP route, sidecar override after restart, and mounting on a surface without a web
+  server
+- `npm pack --dry-run`: 9 files, 16.6 kB (English and Chinese READMEs included)
+- Published as `dsh-fenggu-time@0.1.1` from CI with npm trusted publishing; the update source
+  returns 200 on jsDelivr
 
 Repo is public and carries the `dsh-plugin` topic.
