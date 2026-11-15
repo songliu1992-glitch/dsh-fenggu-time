@@ -44,10 +44,22 @@
 ## 安装
 
 ```sh
-dsh plugin add dsh-fenggu-time
+dsh plugin add dsh-fenggu-time@latest
 ```
 
-或在客户端里：**插件 → 添加插件**，填 `dsh-fenggu-time`，安装源选官方 npm 源，装完重启 DSH。
+或在客户端里：**插件 → 添加插件**，填 **`dsh-fenggu-time@latest`**（`@latest` 是字符串的一部分），安装源选官方 npm 源，装完重启 DSH。
+
+**命令行和对话框都要带 `@latest`。** DSH 会把已安装的版本钉在锁文件里，pnpm 不会自己往上走；更麻烦的是，只填包名时 pnpm 的 `minimumReleaseAge` 供应链策略可能在**不报错**的情况下把新版本跳过、装回旧版。`@latest` 会强制重新解析。
+
+### 升级
+
+DSH 对第三方插件不支持原地升级。要换到新版本：
+
+1. **插件 → 已安装 → dsh-fenggu-time → 卸载**
+2. 用 **`dsh-fenggu-time@latest`** 重新安装
+3. 重启 DSH
+
+只填包名升级很可能又装回旧版，而界面会显示“安装成功”。
 
 ## 节假日数据与每年自动检查
 

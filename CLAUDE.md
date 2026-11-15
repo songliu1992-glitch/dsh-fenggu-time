@@ -31,7 +31,10 @@ submission/      市场投稿用 YAML + PR 正文
    （`FIRST_CHECK_AT`），查完自动排下一次；启动时补跑漏掉的（但不早于首次时间）。
    setTimeout 单次上限约 24.8 天，`MAX_TIMEOUT_MS` 分片续排，改这里时别把分片去掉。
    不要加回设置页按钮——用户明确要求去掉。
-7. **发版前必跑**：`npm test` + `npm pack --dry-run` 看清单（不能把 test/、截图塞进 tarball）。
+7. **安装说明必须带 `@latest`。** 中英 README 的安装/升级段都写 `dsh-fenggu-time@latest`：
+   DSH 把已安装版本钉在锁文件里，裸包名还可能被 pnpm 的 `minimumReleaseAge` 静默降级到旧版
+   （不报错）。升级路径固定为「卸载 → 带 @latest 重装 → 重启」，不要写成原地升级。
+8. **发版前必跑**：`npm test` + `npm pack --dry-run` 看清单（不能把 test/、截图塞进 tarball）。
 
 ## 命令
 

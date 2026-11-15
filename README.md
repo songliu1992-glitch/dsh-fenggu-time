@@ -57,11 +57,26 @@ off-peak. Two consequences worth stating plainly:
 ## Install
 
 ```sh
-dsh plugin add dsh-fenggu-time
+dsh plugin add dsh-fenggu-time@latest
 ```
 
-Or in the app: **Plugins → Add plugin**, paste `dsh-fenggu-time`, choose the official npm
-registry, install, then restart DSH.
+Or in the app: **Plugins → Add plugin**, paste **`dsh-fenggu-time@latest`** (the `@latest` is
+part of the string), choose the official npm registry, install, then restart DSH.
+
+**Always include `@latest`, in the CLI and in the dialog.** DSH pins an installed version in
+its lockfile, and pnpm will not move it on its own; worse, a *bare* package name can be
+silently resolved to an older release by pnpm's `minimumReleaseAge` supply-chain policy (a
+freshly published version is skipped without an error). `@latest` forces a fresh resolution.
+
+### Upgrading
+
+DSH has no in-place upgrade for third-party plugins. To move to a newer release:
+
+1. **Plugins → Installed → dsh-fenggu-time → Uninstall**
+2. reinstall with **`dsh-fenggu-time@latest`**
+3. restart DSH
+
+Upgrading with the bare name can install an older release again, which looks like a success.
 
 ## Holiday data and the yearly check
 
